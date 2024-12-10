@@ -22,18 +22,18 @@ namespace _10_DatabaseCrud
 
 
             Console.Write("Eklemek İstediğiniz Kategori Adı: ");
-            string categoryName= Console.ReadLine();
+            string categoryName = Console.ReadLine();
 
             SqlConnection connection = new SqlConnection("Data Source=MDAYAN\\SQLEXPRESS;initial catalog=EgitimKampiDB;integrated security=true");
 
             connection.Open();
 
-            SqlCommand command = new SqlCommand("insert into TblCategory (CategoryName) values(@p1)",connection);
+            SqlCommand command = new SqlCommand("insert into TblCategory (CategoryName) values(@p1)", connection);
             command.Parameters.AddWithValue("@p1", categoryName);
 
             command.ExecuteNonQuery();
 
-            
+
 
             connection.Close();
             Console.WriteLine("Kategori başarılı şekilde eklendi");
@@ -49,7 +49,7 @@ namespace _10_DatabaseCrud
             Console.WriteLine("Ürün Adı: ");
             productName = Console.ReadLine();
             Console.WriteLine("Ürün Fiyatı");
-            productPrice= decimal.Parse(Console.ReadLine());
+            productPrice = decimal.Parse(Console.ReadLine());
 
             SqlConnection connection1 = new SqlConnection("Data Source=MDAYAN\\SQLEXPRESS; initial catalog = EgitimKampiDB; integrated security=true");
             connection1.Open(); // bağlantı açma
@@ -61,9 +61,9 @@ namespace _10_DatabaseCrud
             command1.Parameters.AddWithValue("@productPrice", productPrice);
             command1.Parameters.AddWithValue("@productStatus", true);
 
-            
+
             command1.ExecuteNonQuery();
-            
+
             //bağlantıyı kapat
             connection1.Close();
 
@@ -78,7 +78,7 @@ namespace _10_DatabaseCrud
             connection2.Open();
 
             SqlCommand command2 = new SqlCommand("select *from TblProduct", connection2);
-            
+
             // sql den verileri çekerken listeleme sırasında köprü görevi gören komut
             SqlDataAdapter adapter = new SqlDataAdapter(command2);
 
@@ -92,7 +92,7 @@ namespace _10_DatabaseCrud
             {
                 foreach (var item in row.ItemArray)
                 {
-                    Console.Write(item.ToString()+ " ");
+                    Console.Write(item.ToString() + " ");
                 }
             }
 
@@ -107,13 +107,13 @@ namespace _10_DatabaseCrud
             #region Ürün Silme İşlemi
 
             Console.WriteLine("Silincek Ürün Id: ");
-            int productId=int.Parse(Console.ReadLine());
+            int productId = int.Parse(Console.ReadLine());
 
             SqlConnection connection3 = new SqlConnection("Data Source=MDAYAN\\SQLEXPRESS;initial catalog=EgitimKampiDB;integrated security=true");
 
             connection3.Open();
 
-            SqlCommand command3 = new SqlCommand("Delete From TblProduct Where ProductId=@productId",connection3);
+            SqlCommand command3 = new SqlCommand("Delete From TblProduct Where ProductId=@productId", connection3);
             command3.Parameters.AddWithValue("@productId", productId);
             command3.ExecuteNonQuery();
 
@@ -130,12 +130,12 @@ namespace _10_DatabaseCrud
 
             Console.WriteLine("Güncellenecek Ürün Adı: ");
             string productName_1 = Console.ReadLine();
-            
+
             Console.WriteLine("Güncellenecek Ürün Fiyatı: ");
             decimal productPrice_1 = decimal.Parse(Console.ReadLine());
-            
 
-            
+
+
             SqlConnection connection4 = new SqlConnection("Data Source=MDAYAN\\SQLEXPRESS;initial catalog=EgitimKampiDB;integrated security=true");
 
             connection4.Open();
